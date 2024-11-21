@@ -34,8 +34,34 @@ export async function POST(request) {
       }),
     });
 
-    return new Response(JSON.stringify({ dataForCompany, dataForClient }), { status: 200 });
+    return new Response(JSON.stringify({ dataForCompany, dataForClient }), {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3002/pricing/",  // Allow localhost:3002
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    });
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3002/pricing/",  // Allow localhost:3002
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    });
   }
+}
+
+// Handle OPTIONS preflight request
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "http://localhost:3002/pricing/",  // Allow localhost:3002
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
 }
