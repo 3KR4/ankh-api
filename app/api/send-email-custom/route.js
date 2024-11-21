@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import CustomPlanTemplate from '../../_components/CustomPlanTemplate';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend('re_GwvpQ5dE_CjFsCByDxcXFQcjeGtvWownC');
 
 export async function POST(request) {
   try {
